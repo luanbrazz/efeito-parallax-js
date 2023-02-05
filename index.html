@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <title>Parallax</title>
+</head>
+
+<body>
+    <section>
+        <img src="img/1.jpeg" data-veloc="4" class="layer">
+        <img src="img/2.jpeg" data-veloc="1" class="layer">
+        <img src="img/3.jpeg" data-veloc="-4" class="layer">
+        <img src="img/4.jpeg" data-veloc="6" class="layer">
+        <img src="img/5.png" data-veloc="-2" class="layer">
+        <img src="img/6.jpeg" data-veloc="-5" class="layer">
+
+        <h2>@LUANBRAZ</h2>
+    </section>
+
+    <script type="text/javascript">
+
+        const velocs = [];
+
+        // número aleatorio
+        function numeroAleatorio(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        function moveOjeto(e) {
+            // console.log('****Moveu mouse****', e.pageX, e.pageY);
+            // console.log('****Moveu window****', window.innerWidth, window.innerHeight);
+
+            this.querySelectorAll('.layer').forEach((layer, index) => {
+
+                velocs[index] = velocs[index] || numeroAleatorio[-6, 5] || layer.dataset.veloc;
+
+                const x = (window.innerWidth - e.pageX * velocs[index]) / 100;
+                const y = (window.innerHeight - e.pageY * velocs[index]) / 100;
+                layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
+
+                console.log('***moveObjetos', numeroAleatorio(-6, 5));
+            });
+
+        }
+
+        document.addEventListener('mousemove', moveOjeto);
+    </script>
+
+</body>
+
+</html>
